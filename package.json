@@ -1,0 +1,18 @@
+{
+  "name": "circ-blog-runtime",
+  "version": "0.0.1",
+  "description": "runtime for circ blog",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "hsiaosiyuan0",
+  "license": "MIT",
+  "dependencies": {
+    "circ": "git@github.com:hsiaosiyuan0/Circ.git",
+    "express": "^4.15.3",
+    "github": "^9.2.0",
+    "ini": "^1.3.4",
+    "marked": "^0.3.6"
+  }
+}

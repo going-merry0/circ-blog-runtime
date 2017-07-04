@@ -1,0 +1,56 @@
+/*let express = jsModule("express")
+let app = callJs(null, express)
+
+callJs(app, app.get, "/", (req, res) -> {
+  callJs(res, res.send, "hello world")
+})
+
+let port = 3000
+callJs(app, app.listen, port, () -> {
+  println("app is running at: " + port)
+})*/
+
+let GitHubApi = jsModule("github")
+let github = newJsObj(GitHubApi, {
+  "protocol": "https",
+  "host": "api.github.com",
+})
+
+let fs = jsModule("fs")
+let ini = jsModule("ini")
+
+let fileContent = callJsAsync(fs, fs.readFile, "./config.ini", "utf8")
+let config = callJs(ini, ini.parse, fileContent);
+
+callJs(github, github.authenticate, {
+  "type": "basic",
+  "username": config.github.username,
+  "password": config.github.password
+})
+
+let data = callJsAsync(github.repos, github.repos.getContent, {
+  "owner": config.github.username,
+  "repo": config.github.repo,
+  "path": "post/work/fronted-developers-should-known-some-parsing-skills.md",
+  "headers": {
+    "Accept": "application/vnd.github.v3.raw+json"
+  }
+}).data
+
+let marked = jsModule("marked")
+callJs(marked, marked.setOptions, {
+  "renderer": newJsObj(marked.Renderer),
+  "gfm": true,
+  "tables": true,
+  "breaks": false,
+  "pedantic": false,
+  "sanitize": false,
+  "smartLists": true,
+  "smartypants": false
+})
+
+let html = callJs(null, marked, data)
+let reg = regexp("<h1.*?>[\\s\\S]*?(.*)?[\\s\\S]*</h1>")
+let matches = callJs(html, html.match, reg)
+let title = if matches != null then matches[1] else ""
+println(title)

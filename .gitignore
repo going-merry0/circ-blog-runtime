@@ -50,4 +50,5 @@ fabric.properties
 Contact GitHub API Training Shop Blog About
 
 node_modules
-config.ini
+circ-blog/config.ini
+highlight.js

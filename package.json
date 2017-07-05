@@ -11,6 +11,7 @@
   "dependencies": {
     "circ": "git@github.com:hsiaosiyuan0/Circ.git",
     "express": "^4.15.3",
+    "express-handlebars": "^3.0.0",
     "github": "^9.2.0",
     "ini": "^1.3.4",
     "marked": "^0.3.6"

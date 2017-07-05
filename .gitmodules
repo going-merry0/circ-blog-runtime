@@ -1,0 +1,3 @@
+[submodule "circ-blog"]
+	path = circ-blog
+	url = git@github.com:hsiaosiyuan0/circ-blog.git
